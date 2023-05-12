@@ -1,1 +1,87 @@
-<p>busqueda works!</p>
+<div class="form-outline mt-5">
+  <input
+    type="text"
+    class="form-control mb-3"
+    placeholder="¿Qué estas buscando?"
+    aria-label="Buscar"
+    [(ngModel)]="textoBusqueda"
+    (ngModelChange)="onSearchTextChange()"
+  />
+</div>
+
+<div class="row">
+  <div class="col-6 col-md-3">
+    <label class="text-muted">Categoría</label>
+    <select class="form-select" aria-label="Categoria" name="categoria" id="categoria" [(ngModel)]="idCategoria" (ngModelChange)="onSearchTextChange()">
+      <option *ngFor="let categoria of categorias" [value]="categoria._id">{{ categoria.nombreCategoria }}</option>
+    </select>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <label class="text-muted">Estado</label>
+    <select class="form-select" aria-label="Estado" [(ngModel)]="estado" (ngModelChange)="onSearchTextChange()">
+      <option value="Disponible">Disponible</option>
+      <option value="Reservado">Reservado</option>
+    </select>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <label class="text-muted">Precio Mínimo</label>
+    <select class="form-select" aria-label="Precio_min" [(ngModel)]="precio_min" (ngModelChange)="onSearchTextChange()">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="300">300</option>
+      <option value="1000">1000</option>
+    </select>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <label class="text-muted">Precio Máximo</label>
+    <select class="form-select" aria-label="Precio_max" [(ngModel)]="precio_max" (ngModelChange)="onSearchTextChange()">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="300">300</option>
+      <option value="1000">1000</option>
+    </select>
+  </div>
+</div>
+
+<section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-6 col-md-4 mb-2" *ngFor="let producto of productos">
+      <a routerLink="/productos/{{producto._id}}" class="linkDecoration">
+        <div class="card text-center div-productos">
+          <img
+            src="{{producto.imagen}}"
+            class="card-img-top"
+            alt="Sunset Over the Sea"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{producto.nombre}} - {{producto.precio}}€</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>

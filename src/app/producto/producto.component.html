@@ -1,1 +1,53 @@
-<p>producto works!</p>
+<div class="card text-center my-3">
+
+  <div class="card-header">
+    <img src="{{imagen}}" class="card-img-top w-75" alt="Foto producto">
+  </div>
+
+  <div class="card-body left">
+    <h3 class="card-title fw-bold">{{precio}}</h3>
+    <h5 class="card-title">{{nombre}}</h5>
+    <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
+    <div class="card-text">
+      <a routerLink='/usuarios/{{idUsuarioVendedor}}' class="linkDecoration">
+        <img src="../../assets/img/usuario.png" class="logoUsuarioProducto"> {{nombreUsuario}}
+      </a>
+    </div>
+    <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
+    <p class="card-text" [innerHTML]="descripcion"></p>
+    <div [ngSwitch]="opcionBoton" class="d-grid gap-2 col-6 mx-auto">
+        <button *ngSwitchCase="'opcion1'"  type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCompra">
+          Editar
+        </button>
+        <button *ngSwitchCase="'opcion2'"  type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCompra">
+          Vender
+        </button>
+        <button *ngSwitchDefault type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCompra">
+          Comprar
+        </button>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">{{fechaCreacion}}</div>
+
+</div>
+
+<!-- Modal Comprar-->
+<div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalVerificacionCompra" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4 class="mb-3">¿Desea realizar la compra?</h4>
+        <h5 class="mb-3">{{nombre}}</h5>
+        <h5 class="mb-3">{{precio}} </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <form action="/compra-realizada">
+          <button type="submit" class="btn btn-outline-success">Sí, Comprar</button>
+       </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+.div-productos:hover {
+  color: rgb(196, 53, 53);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.01);
+}

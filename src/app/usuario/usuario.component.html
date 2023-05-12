@@ -1,1 +1,50 @@
-<p>usuario works!</p>
+<div class="card text-center my-3">
+
+  <div class="card-body">
+
+    <div class="row justify-content-center">
+      <div class="col-6 my-auto">
+        <h3 class="card-title fw-bold">{{nombreUsuario}} </h3>
+      </div>
+      <div class="col-6">
+        <img src="../../assets/img/avatar.png" class="logoUsuario right">
+        <figcaption><a href="" (click)="logOut()">Cerrar Sesión</a></figcaption>
+      </div>
+
+    </div>
+
+    <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
+
+    <div class="d-grid gap-2 col-10 mx-auto">
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" [(ngModel)]="estadoSeleccionado" value="Disponible" (change)="mostrarProductos()" checked>
+        <label class="btn btn-outline-dark py-3" for="btnradio1">Disponible</label>
+
+        <input type="radio" class="btn-check" name="btnradio" [(ngModel)]="estadoSeleccionado" id="btnradio2" autocomplete="off" value="Reservado" (change)="mostrarProductos()">
+        <label class="btn btn-outline-dark py-3" for="btnradio2" >Reservados</label>
+
+        <input type="radio" class="btn-check" name="btnradio" [(ngModel)]="estadoSeleccionado" id="btnradio3" autocomplete="off" value="Comprado" (change)="mostrarProductos()">
+        <label class="btn btn-outline-dark py-3" for="btnradio3" >Comprados</label>
+      </div>
+    </div>
+  <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
+
+  <div class="row" [ngClass]="visibility">
+
+    <div class="col-6 col-md-4 mb-2" *ngFor="let producto of productos" >
+      <a href="/productos/{{producto._id}}" class="linkDecoration">
+        <div class="card text-center">
+          <img
+            [src]="producto.imagen"
+            class="card-img-top"
+            alt="Imagen producto"/>
+          <div class="card-body">
+            <h5 class="card-title">{{producto.nombre}} - {{producto.precio}}€</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</div>
