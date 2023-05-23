@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../interfaces/producto.interfaces';
 import { ApiService } from '../services/api.service';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-busqueda',
@@ -18,13 +20,22 @@ export class BusquedaComponent implements OnInit {
   estado = 'Disponible';
   textoBusqueda = '';
 
-  constructor(private api: ApiService) {}
+  categoriaPorInicio!:string;
+
+  constructor(private api: ApiService,private route: ActivatedRoute) {}
 
   onSearchTextChange() {
     this.searchProducts();
   }
 
   ngOnInit(): void {
+
+    this.route.queryParams.pipe(
+      map(params => params['categoria'])
+    ).subscribe(categoria => {
+      this.idCategoria = categoria
+    });
+
     this.api.getCategorias().subscribe((data) => {
       this.categorias = data;
     });

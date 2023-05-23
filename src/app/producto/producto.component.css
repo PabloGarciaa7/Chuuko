@@ -3,3 +3,44 @@
   height: 80px;
   border-radius: 50%;
 }
+
+.maxheight{
+  max-height: 500px;
+}
+
+.link-nombre:hover{
+  font-weight: bold;
+  color: rgb(196, 53, 53);
+  transform: scale(1.1);
+}
+
+.texto-reserva{
+  padding: 10px;
+  background-color: rgba(68, 102, 226, 0.482);
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+}
+
+.texto-venta{
+  padding: 10px;
+  background-color: rgba(91, 209, 51, 0.482);
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+}
+
+.texto-eliminado{
+  padding: 10px;
+  background-color: rgb(194, 45, 45);
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+}
+
+.texto-rechazo{
+  padding: 10px;
+  background-color: rgba(91, 209, 51, 0.482);
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+}

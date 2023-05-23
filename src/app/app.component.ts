@@ -1,6 +1,7 @@
 import { ApiService } from './services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,25 +9,42 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  email: string = '';
-  password: string = '';
+  loggedIn: boolean = false;
+  registro: boolean = false;
 
-  loggedIn!: boolean;
+  visibility:string = '';
+
+  emailSesion: string = '';
+  passwordSesion: string = '';
+
+  toastBody:string = '';
+
+  usuario = {
+    nombre: '',
+    apellidos: '',
+    localidad: '',
+    telefono: 0,
+    email: '',
+    password: '',
+  };
 
   constructor(public router: Router, private api: ApiService) {}
 
-  ngOnInit() {  this.router.events.subscribe((event) => {
-    if (event instanceof NavigationEnd) {
-      this.validarSesion();
-    }
-  });
-}
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.validarSesion();
+      }
+    });
+  }
 
   validarSesion() {
     let usuarioStorageString = localStorage.getItem('usuario');
     let usuarioStorageJson = usuarioStorageString ? JSON.parse(usuarioStorageString) : null;
 
-    if (usuarioStorageJson === '' || usuarioStorageJson === undefined || usuarioStorageJson === null) {
+    if (usuarioStorageJson === '' ||
+      usuarioStorageJson === undefined ||
+      usuarioStorageJson === null) {
       localStorage.removeItem('usuario');
       this.loggedIn = false;
     } else {
@@ -36,16 +54,70 @@ export class AppComponent implements OnInit {
 
   iniciarSesion() {
     localStorage.removeItem('usuario');
-    this.api.getUsuarioPorEmail(this.email).subscribe((res) => {
-      if (!res) {
-        res.status(400).json({ message: 'Usuario no encontrado' });
-      } else {
-        if (res.email === this.email && this.password === res.password) {
-          localStorage.setItem('usuario', JSON.stringify(res));
-          this.loggedIn = true;
+
+    this.api.getUsuarioPorEmail(this.emailSesion)
+      .subscribe((res) => {
+        if (res) {
+          if (res.email === this.emailSesion && this.passwordSesion === res.password) {
+            localStorage.setItem('usuario', JSON.stringify(res));
+            this.loggedIn = true;
+          }
         }
-      }
-    });
+      },
+      (error: HttpErrorResponse) => {
+        this.mostrarAlerta('show bg-alerta','Comprueba que los campos son correctos');
+        setTimeout(() => {
+          this.mostrarAlerta('hidden','')
+        }, 4000);
+      });
+  }
+
+  mostrarAlerta(visibility:string,body:string){
+    this.visibility = visibility;
+    this.toastBody = body;
+  }
+
+
+  registrar() {
+    this.registro = true;
+  }
+
+  volver() {
+    this.registro = false;
+  }
+
+  registroUsuario() {
+    this.emailSesion = this.usuario.email;
+    this.passwordSesion = this.usuario.password;
+
+    this.api.postUsuario(this.usuario)
+    .subscribe((data) =>{
+      localStorage.setItem('usuario', JSON.stringify(data));
+
+      this.mostrarAlerta('show bg-exito','Registro con éxito! Iniciando sesión');
+          setTimeout(() => {
+            this.iniciarSesion();
+          }, 3000);
+
+      },
+        (error: HttpErrorResponse) => {
+          let textoAlerta = '';
+
+          if (error.error.message.errors.email.message !== undefined) {
+            textoAlerta = error.error.message.errors.email.message;
+          }
+
+          if (error.error.message.errors.telefono.message !== undefined) {
+            textoAlerta = textoAlerta + "<p>" + error.error.message.errors.telefono.message+ "</p>";
+          }
+
+          console.log(error)
+          this.mostrarAlerta('show bg-alerta',textoAlerta);
+          setTimeout(() => {
+            this.mostrarAlerta('hidden','')
+          }, 5000);
+        }
+    );
   }
 
 }

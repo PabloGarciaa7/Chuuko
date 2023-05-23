@@ -9,19 +9,22 @@
 
     <div class="collapse navbar-collapse" id="navBar">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
+        <li class="nav-item  my-auto">
           <a class="nav-link iconoUsuario" routerLink="/inicio" routerLinkActive="linkActivo">Inicio</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  my-auto">
           <a class="nav-link iconoUsuario" routerLink="/busqueda" routerLinkActive="linkActivo">Busqueda</a>
         </li>
       </ul>
       <div class="navbar-nav">
         <div class="nav-item me-auto my-auto">
-          <a class="nav-link iconoUsuario" routerLink="/usuario" routerLinkActive="linkActivo">{{nombreUsuario}}</a>
+          <a class="nav-link iconoUsuario" routerLink="/mi-usuario" routerLinkActive="linkActivo">{{nombreUsuario}}</a>
         </div>
-        <a routerLink="/usuario" class="nav-link iconoUsuario">
+        <a routerLink="/mi-usuario" class="nav-link iconoUsuario">
           <img src="../../assets/img/logoperfil.png" alt="Imagen Perfil" class="logoUsuarioNav">
+        </a>
+        <a routerLink="/nuevo-producto" class="nav-link">
+          <img src="../../assets/img/mas.png" alt="" class="logoUsuarioNav">
         </a>
       </div>
     </div>

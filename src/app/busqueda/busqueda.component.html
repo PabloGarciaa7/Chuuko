@@ -13,6 +13,7 @@
   <div class="col-6 col-md-3">
     <label class="text-muted">Categoría</label>
     <select class="form-select" aria-label="Categoria" name="categoria" id="categoria" [(ngModel)]="idCategoria" (ngModelChange)="onSearchTextChange()">
+      <option value="">Ninguna</option>
       <option *ngFor="let categoria of categorias" [value]="categoria._id">{{ categoria.nombreCategoria }}</option>
     </select>
   </div>
@@ -68,16 +69,17 @@
 
   <div class="row">
 
-    <div class="col-6 col-md-4 mb-2" *ngFor="let producto of productos">
+    <div class="col-6 col-md-4 mb-3" *ngFor="let producto of productos">
       <a routerLink="/productos/{{producto._id}}" class="linkDecoration">
-        <div class="card text-center div-productos">
+        <div class="card text-center div-productos p-2">
           <img
             src="{{producto.imagen}}"
-            class="card-img-top"
-            alt="Sunset Over the Sea"
+            class="m-3"
+            alt="{{producto.nombre}}"
           />
-          <div class="card-body">
-            <h5 class="card-title">{{producto.nombre}} - {{producto.precio}}€</h5>
+          <div class="card-body p-1 texto-producto mt-2">
+            <h5 class="fw-bold text-left">{{producto.precio}}€</h5>
+            <p class="card-title">{{producto.nombre}}</p>
           </div>
         </div>
       </a>

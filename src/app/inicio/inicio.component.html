@@ -9,18 +9,23 @@
 <div class="form-outline">
   <input
     type="search"
-    id="form1"
     class="form-control mb-5"
     placeholder="¿Qué estas buscando?"
     aria-label="Search"
-  />
+    [(ngModel)]="textoBusqueda"
+    (ngModelChange)="onSearchTextChange()"
+    list="suggestions"
+    (keyup.enter)="redirectProducto()"/>
+    <datalist id="suggestions">
+      <option *ngFor="let producto of productosSuggestion" [value]="producto._id">{{ producto.nombre }}</option>
+    </datalist>
 </div>
 
 <div class="row">
 
   <div class="col-4 col-md-2 mb-5">
     <figure>
-      <a href="/busqueda?categoria=vehiculos" class="linkDecoration">
+      <a [routerLink]="['/busqueda']" [queryParams]="{ categoria: '643fc8b4c3f97a8c342b4289' }" class="linkDecoration">
         <img
           src="../../assets/img/vehiculos.png"
           alt="vehiculos"
@@ -32,7 +37,7 @@
 
   <div class="col-4 col-md-2 mb-5">
     <figure>
-      <a href="/busqueda?categoria=moviles" class="linkDecoration">
+      <a [routerLink]="['/busqueda']" [queryParams]="{ categoria: '643fc8e2c3f97a8c342b428f' }" class="linkDecoration">
         <img
           src="../../assets/img/moviles.png"
           alt="moviles"
@@ -44,7 +49,7 @@
 
   <div class="col-4 col-md-2 mb-5">
     <figure>
-      <a href="/busqueda?categoria=deportes" class="linkDecoration">
+      <a [routerLink]="['/busqueda']" [queryParams]="{ categoria: '643fc90ac3f97a8c342b4293' }" class="linkDecoration">
         <img
           src="../../assets/img/deportes.png"
           alt="deportes"
@@ -56,7 +61,7 @@
 
   <div class="col-4 col-md-2 mb-5">
     <figure>
-      <a href="/busqueda?categoria=videojuegos" class="linkDecoration">
+      <a [routerLink]="['/busqueda']" [queryParams]="{ categoria: '643fc926c3f97a8c342b4297' }" class="linkDecoration">
         <img
           src="../../assets/img/videojuegos.png"
           alt="videojuegos"
@@ -68,7 +73,7 @@
 
   <div class="col-4 col-md-2 mb-5">
     <figure>
-      <a href="/busqueda?categoria=hogar" class="linkDecoration">
+      <a [routerLink]="['/busqueda']" [queryParams]="{ categoria: '643fc933c3f97a8c342b4299' }" class="linkDecoration">
         <img
           src="../../assets/img/hogar.png"
           alt="hogar"
@@ -80,7 +85,7 @@
 
   <div class="col-4 col-md-2 mb-5">
     <figure>
-      <a href="/busqueda?categoria=informatica" class="linkDecoration">
+      <a [routerLink]="['/busqueda']" [queryParams]="{ categoria: '643fc8f5c3f97a8c342b4291' }" class="linkDecoration">
         <img
           src="../../assets/img/informatica.png"
           alt="informatica"

@@ -17,7 +17,19 @@ export class ApiService {
     );
   }
 
-  getProductosDeUsuarioPorEstado(idUsuario: string,estado: string): Observable<any> {
+  getUsuarioPorId(idUsuario:string): Observable<any> {
+    return this.httpClient.get<any>(
+      this.url + '/usuarios/' + idUsuario
+    );
+  }
+
+  postUsuario(usuario:any):Observable<any>{
+    return this.httpClient.post<any>(
+      this.url + '/usuarios',usuario
+    );
+  }
+
+  getProductosDeUsuarioPorEstado(idUsuario: string, estado: string): Observable<any> {
     return this.httpClient.get<any>(
       this.url + '/usuarios/' + idUsuario + '/productos?estado=' + estado
     );
@@ -44,6 +56,18 @@ export class ApiService {
   getProductos(queryBusqueda:string):Observable<any>{
     return this.httpClient.get<any>(
       this.url + '/productos?' + queryBusqueda
+    );
+  }
+
+  putProducto(idProducto:any,producto:any):Observable<any>{
+    return this.httpClient.put<any>(
+      this.url + '/productos/' + idProducto, producto
+    );
+  }
+
+  deleteProducto(idProducto:string):Observable<any>{
+    return this.httpClient.delete<any>(
+      this.url + '/productos/' + idProducto
     );
   }
 

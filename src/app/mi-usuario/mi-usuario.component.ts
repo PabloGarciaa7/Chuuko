@@ -1,14 +1,13 @@
-import { Producto } from './../interfaces/producto.interfaces';
 import { Component, OnInit } from '@angular/core';
+import { Producto } from '../interfaces/producto.interfaces';
 import { ApiService } from '../services/api.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-usuario',
-  templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css'],
+  selector: 'app-mi-usuario',
+  templateUrl: './mi-usuario.component.html',
+  styleUrls: ['./mi-usuario.component.css']
 })
-export class UsuarioComponent implements OnInit {
+export class MiUsuarioComponent implements OnInit {
   nombreUsuario: string = '';
   apellidosUsuario:string = '';
   idUsuario:string = '';
@@ -18,24 +17,22 @@ export class UsuarioComponent implements OnInit {
 
   productos:Producto[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private api: ApiService) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    let usuarioString = localStorage.getItem('usuario');
+    let usuarioJson = usuarioString ? JSON.parse(usuarioString) : null;
 
-      const idUsuario = params['id'];
+    this.nombreUsuario = usuarioJson.nombre;
+    this.apellidosUsuario = usuarioJson.apellidos;
 
-      this.api.getUsuarioPorId(idUsuario).subscribe((res) => {
-        this.nombreUsuario = res.nombre;
-        this.apellidosUsuario = res.apellidos;
-        this.idUsuario = res._id;
-        this.mostrarProductos();
-      });
-    });
+    this.idUsuario = usuarioJson._id;
 
+    this.mostrarProductos();
+  }
 
+  logOut() {
+    localStorage.removeItem('usuario');
   }
 
   mostrarProductos(){

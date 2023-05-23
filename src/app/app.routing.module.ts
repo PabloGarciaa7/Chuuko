@@ -1,4 +1,4 @@
-import { RegisterComponent } from './register/register.component';
+import { MiUsuarioComponent } from './mi-usuario/mi-usuario.component';
 import { CompraRealizadaComponent } from './compra-realizada/compra-realizada.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'productos/:id', component: ProductoComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'compra-realizada', component: CompraRealizadaComponent },
-  { path: 'registro', component: RegisterComponent },
-  { path: 'subir-producto', component: NuevoProductoComponent }
+  { path: 'nuevo-producto', component: NuevoProductoComponent },
+  { path: 'mi-usuario' ,component: MiUsuarioComponent },
 ];
 
 @NgModule({

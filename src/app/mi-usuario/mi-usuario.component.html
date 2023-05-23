@@ -9,6 +9,7 @@
       </div>
       <div class="col-6">
         <img src="../../assets/img/avatar.png" class="logoUsuario right">
+        <figcaption><a href="" (click)="logOut()">Cerrar Sesión</a></figcaption>
       </div>
     </div>
 
@@ -29,6 +30,7 @@
       </div>
     </div>
 
+
   <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
 
   <div class="row" [ngClass]="visibility">
@@ -40,7 +42,7 @@
             [src]="producto.imagen"
             class="card-img-top"
             alt="Imagen producto"/>
-            <div class="card-body p-1 texto-producto mt-2 ps-2">
+            <div class="card-body p-1 texto-producto mt-2">
               <h5 class="fw-bold text-left">{{producto.precio}}€</h5>
               <p class="card-title">{{producto.nombre}}</p>
             </div>
