@@ -29,7 +29,7 @@ export class ProductoComponent implements OnInit {
   productoComprado = {
     estado: 'Comprado',
     fechaCompra: this.d.getDate()  + "-" + (this.d.getMonth()+1) + "-" + this.d.getFullYear() + " " +
-    this.d.getHours() + ":" + this.d.getMinutes()
+    this.d.getHours() + ":" + (this.d.getMinutes()<10?'0':'') + this.d.getMinutes()
   };
 
   productoRechazado = {
@@ -114,7 +114,7 @@ export class ProductoComponent implements OnInit {
         this.mostrarAlerta('texto-reserva mt-3 show','Se ha editado correctamente');
         setTimeout(() => {
           location.reload();
-        }, 4000)
+        }, 3000)
       });
   }
 
@@ -125,7 +125,7 @@ export class ProductoComponent implements OnInit {
         this.mostrarAlerta('texto-venta mt-3 show','¡Producto vendido!');
         setTimeout(() => {
           this.router.navigateByUrl('/mi-usuario');
-        }, 4000)
+        }, 3000)
       });
   }
 
@@ -135,7 +135,7 @@ export class ProductoComponent implements OnInit {
       this.mostrarAlerta('texto-eliminado mt-3 show','¡Producto eliminado!');
       setTimeout(() => {
         this.router.navigateByUrl('/mi-usuario');
-      }, 4000)
+      }, 3000)
     });
   }
 
@@ -145,7 +145,7 @@ export class ProductoComponent implements OnInit {
       this.mostrarAlerta('texto-rechazo mt-3 show','Se ha rechazado la compra! Volvera a estar disponible');
       setTimeout(() => {
         location.reload();
-      }, 4000)
+      }, 3000)
     });
   }
 

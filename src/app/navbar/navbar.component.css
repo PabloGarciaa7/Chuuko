@@ -17,3 +17,7 @@
   height: 60px;
 
 }
+
+a:hover{
+  color: rgb(255, 0, 0);
+}

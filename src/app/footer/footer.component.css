@@ -1,0 +1,13 @@
+.logoGit{
+  width: 25px;
+  height: 25px;
+}
+
+.text-decoration{
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.text-decoration:hover{
+  color: rgb(255, 0, 0);
+}

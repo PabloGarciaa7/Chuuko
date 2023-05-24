@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
       <div class="col-6 my-auto">
           <h2 class="card-title fw-bold mt-3">{{nombreUsuario}} {{apellidosUsuario}}</h2>
-          <figcaption class="mt-4"><a href="/nuevo-producto"><img src="../../assets/img/mas.png" alt="Añadir Producto" class="nuevoProducto"></a></figcaption>
       </div>
       <div class="col-6">
         <img src="../../assets/img/avatar.png" class="logoUsuario right">
@@ -38,7 +37,7 @@
         <div class="card text-center div-productos p-2">
           <img
             [src]="producto.imagen"
-            class="card-img-top"
+            class="m-3 img-producto mx-auto"
             alt="Imagen producto"/>
             <div class="card-body p-1 texto-producto mt-2 ps-2">
               <h5 class="fw-bold text-left">{{producto.precio}}€</h5>

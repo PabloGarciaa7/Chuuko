@@ -24,3 +24,8 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   transform: scale(1.002);
 }
+
+.img-producto{
+  width: 75%;
+  height: auto;
+}
