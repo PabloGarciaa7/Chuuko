@@ -7,7 +7,7 @@
           <h2 class="card-title fw-bold mt-3">{{nombreUsuario}} {{apellidosUsuario}}</h2>
       </div>
       <div class="col-6">
-        <img src="../../assets/img/avatar.png" class="logoUsuario right">
+        <img src="../../assets/img/avatar.png" class="logoUsuario right" alt="Logo de Usuario">
       </div>
     </div>
 
@@ -30,9 +30,20 @@
 
   <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
 
+  <div *ngIf="mostrarSpinner" class="spinner">
+    <div class="spinner-border text-danger my-5 tamañoSpinner" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <div *ngIf="avisoProductosEncontrados" class="my-5 text-muted">
+    <h4>No se encuentra ningún producto en esta sección.</h4>
+  </div>
+
   <div class="row" [ngClass]="visibility">
 
     <div class="col-6 col-md-4 mb-2" *ngFor="let producto of productos" >
+
       <a href="/productos/{{producto._id}}" class="linkDecoration">
         <div class="card text-center div-productos p-2">
           <img

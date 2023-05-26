@@ -4,7 +4,7 @@
 
 
 <h2 class="fw-bold mt-5 mb-2">Compra y vende cosas de segunda mano</h2>
-<h3 class="text-muted mb-5">Busca lo que quieras que lo encontrarás</h3>
+<h3 class="text-muted mb-5">Busca lo que quieras, que lo encontrarás</h3>
 
 <div class="form-outline">
   <input
@@ -17,7 +17,7 @@
     list="suggestions"
     (keyup.enter)="redirectProducto()"/>
     <datalist id="suggestions">
-      <option *ngFor="let producto of productosSuggestion" [value]="producto._id">{{ producto.nombre }}</option>
+      <option *ngFor="let producto of productosSuggestion" [value]="producto.nombre" [attr.data-id]="producto._id">{{ producto.nombre }}</option>
     </datalist>
 </div>
 
@@ -90,7 +90,7 @@
           src="../../assets/img/informatica.png"
           alt="informatica"
           class="iconoCategoria"/>
-        <figcaption>Informatica</figcaption>
+        <figcaption>Informática</figcaption>
       </a>
     </figure>
   </div>

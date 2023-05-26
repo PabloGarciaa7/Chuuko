@@ -1,4 +1,10 @@
-<div class="card text-center my-3">
+<div *ngIf="mostrarSpinner" class="spinner">
+  <div class="spinner-border text-danger my-5 tamañoSpinner" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
+<div *ngIf="!mostrarSpinner" class="card text-center my-3">
 
   <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">
     <img src="{{productoActual.imagen}}" class="card-img-top" alt="Foto producto">
@@ -27,7 +33,7 @@
         <button *ngSwitchCase="'opcion2'" type="button" class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalVender">
           Vender
         </button>
-        <h5 *ngSwitchCase="'opcion3'" class="my-2 texto-venta">Este producto ha sido comprado por <span class="fw-bold">{{nombreUsuarioComprador}} {{apellidosUsuarioComprador}}</span> el <span class="fw-bold">{{fechaCompra}}</span></h5>
+        <h5 *ngSwitchCase="'opcion3'" class="my-2 texto-venta">Este producto ha sido comprado por <a href="/usuarios/{{idUsuarioComprador}}"><span class="fw-bold">{{nombreUsuarioComprador}} {{apellidosUsuarioComprador}}</span></a> el <span class="fw-bold">{{fechaCompra}}</span></h5>
         <h5 *ngSwitchCase="'opcion4'" class="my-2 texto-reserva">Este producto ya esta en proceso de compra</h5>
         <button *ngSwitchDefault type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCompra">
           Comprar

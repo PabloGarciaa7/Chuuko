@@ -35,7 +35,8 @@
                   id="email"
                   class="form-control"
                   [(ngModel)]="emailSesion"
-                  placeholder="Email" />
+                  placeholder="Email"
+                  (keydown.enter)="iniciarSesion()"/>
               </div>
 
               <label for="password" class="mb-2">Password</label>
@@ -45,18 +46,18 @@
                   id="password"
                   class="form-control" [(ngModel)]="passwordSesion"
                   placeholder="Contraseña"
-                  type="password">
+                  type="password"
+                  (keydown.enter)="iniciarSesion()"/>
               </div>
 
               <button
                 class="btn btn-outline-light px-5"
-                (click)="iniciarSesion()"
-                (keydown.enter)="iniciarSesion()">
+                (click)="iniciarSesion()">
                 Iniciar sesión
               </button>
 
               <div class="mt-3">
-                <p>¿No tienes cuenta? <a class="text-white-50 fw-bold" (click)="registrar()"> Registrate</a></p>
+                <p>¿No tienes cuenta? <a class="fw-bold" (click)="registrar()"> Registrate</a></p>
               </div>
             </div>
 
@@ -73,7 +74,8 @@
                     id="nombre"
                     class="form-control"
                     [(ngModel)]="usuario.nombre"
-                    placeholder="Nombre"/>
+                    placeholder="Nombre"
+                    (keydown.enter)="registroUsuario()"/>
                 </div>
                 <div class="form-outline form-white mb-2 col-md-6">
                   <label for="apellidos" class="mb-2">Apellidos</label>
@@ -82,7 +84,8 @@
                     id="apellidos"
                     class="form-control"
                     [(ngModel)]="usuario.apellidos"
-                    placeholder="Apellidos"/>
+                    placeholder="Apellidos"
+                    (keydown.enter)="registroUsuario()"/>
                 </div>
 
               </div>
@@ -95,7 +98,8 @@
                     id="localidad"
                     class="form-control"
                     [(ngModel)]="usuario.localidad"
-                    placeholder="Localidad"/>
+                    placeholder="Localidad"
+                    (keydown.enter)="registroUsuario()"/>
                 </div>
                 <div class="form-outline form-white mb-2 col-md-6">
                   <label for="telefono" class="mb-2">Teléfono</label>
@@ -104,7 +108,8 @@
                     id="telefono"
                     class="form-control"
                     [(ngModel)]="usuario.telefono"
-                    placeholder="Teléfono"/>
+                    placeholder="Teléfono"
+                    (keydown.enter)="registroUsuario()"/>
                 </div>
               </div>
 
@@ -115,7 +120,8 @@
                   id="email"
                   class="form-control"
                   [(ngModel)]="usuario.email"
-                  placeholder="Email"/>
+                  placeholder="Email"
+                  (keydown.enter)="registroUsuario()"/>
               </div>
 
               <div class="form-outline form-white mb-4">
@@ -125,7 +131,8 @@
                   id="password"
                   class="form-control" [(ngModel)]="usuario.password"
                   placeholder="Contraseña"
-                  type="password">
+                  type="password"
+                  (keydown.enter)="registroUsuario()"/>
               </div>
 
               <button
@@ -133,7 +140,7 @@
                 (click)="registroUsuario()">
                 Registrarse
               </button>
-              <p class="mt-2"><a class="text-white-50 fw-bold" (click)="volver()">Volver</a></p>
+              <p class="mt-2"><a class="fw-bold" (click)="volver()">Volver</a></p>
             </div>
           </div>
         </div>

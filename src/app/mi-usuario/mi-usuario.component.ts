@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../interfaces/producto.interfaces';
 import { ApiService } from '../services/api.service';
@@ -8,12 +9,15 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./mi-usuario.component.css']
 })
 export class MiUsuarioComponent implements OnInit {
+  mostrarSpinner = true;
+
   nombreUsuario: string = '';
   apellidosUsuario:string = '';
   idUsuario:string = '';
   estadoSeleccionado:string = 'Disponible';
 
   visibility: string = 'd-none';
+  avisoProductosEncontrados:boolean = false;
 
   productos:Producto[] = [];
 
@@ -36,18 +40,23 @@ export class MiUsuarioComponent implements OnInit {
   }
 
   mostrarProductos(){
-    try {
+    this.mostrarSpinner = true;
+
       this.visibility = 'd-none';
-      console.log(this.estadoSeleccionado);
+      this.avisoProductosEncontrados = false;
       this.api.getProductosDeUsuarioPorEstado(this.idUsuario,this.estadoSeleccionado).subscribe((res) =>{
         console.log(res);
         this.visibility = 'd-flex';
         this.productos = res;
+        this.mostrarSpinner = false;
+      },
+      (error:HttpErrorResponse) => {
+        this.avisoProductosEncontrados = true;
+        this.visibility = 'd-none';
+        this.mostrarSpinner = false;
       });
-    } catch (error) {
-      console.log(error);
-      this.visibility = 'd-none';
-    }
+
+
   }
 
 }

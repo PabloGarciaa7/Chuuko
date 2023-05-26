@@ -8,7 +8,7 @@
           <figcaption class="mt-4"><a href="/nuevo-producto"><img src="../../assets/img/mas.png" alt="Añadir Producto" class="nuevoProducto"></a></figcaption>
       </div>
       <div class="col-6">
-        <img src="../../assets/img/avatar.png" class="logoUsuario right">
+        <img src="../../assets/img/avatar.png" class="logoUsuario right"  alt="Logo de Usuario">
         <figcaption><a href="" (click)="logOut()">Cerrar Sesión</a></figcaption>
       </div>
     </div>
@@ -32,6 +32,16 @@
 
 
   <section class="d-flex justify-content-center p-2 border-bottom mb-3"></section>
+
+  <div *ngIf="mostrarSpinner" class="spinner">
+    <div class="spinner-border text-danger my-5 tamañoSpinner" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <div *ngIf="avisoProductosEncontrados" class="my-5 text-muted">
+    <h4>No se encuentra ningún producto en esta sección.</h4>
+  </div>
 
   <div class="row" [ngClass]="visibility">
 

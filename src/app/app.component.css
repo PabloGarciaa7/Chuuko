@@ -2,7 +2,7 @@
   background: linear-gradient(rgb(255, 255, 255), rgb(255, 144, 144));
 }
 .vh-150 {
-  height: 120vh !important;
+  height: 100vh !important;
 }
 
 .text-left {
@@ -17,4 +17,14 @@
 .bg-exito {
   color:white;
   background-color: rgba(91, 209, 51, 0.482);
+}
+
+div> p> a:hover{
+  color: red;
+}
+
+@media (max-width:768px){
+  .vh-150 {
+    height: 120vh !important;
+  }
 }

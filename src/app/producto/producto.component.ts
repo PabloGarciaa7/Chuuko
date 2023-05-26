@@ -9,6 +9,8 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./producto.component.css'],
 })
 export class ProductoComponent implements OnInit {
+  mostrarSpinner = true;
+
   idProducto: string = '';
 
   productoActual = {
@@ -43,6 +45,7 @@ export class ProductoComponent implements OnInit {
   estado: string = '';
 
   nombreUsuarioVendedor: string = '';
+  idUsuarioComprador:string = '';
   nombreUsuarioComprador: string = '';
   apellidosUsuarioComprador: string = '';
 
@@ -76,12 +79,14 @@ export class ProductoComponent implements OnInit {
         this.idUsuarioVendedor = res.idUsuarioVendedor?._id;
         this.fechaCreacion = res.fechaCreacion;
         this.nombreUsuarioVendedor = res.idUsuarioVendedor.nombre;
+        this.idUsuarioComprador = res.idUsuarioVendedor._id;
         this.nombreUsuarioComprador = res.idUsuarioComprador?.nombre;
         this.apellidosUsuarioComprador = res.idUsuarioComprador?.apellidos;
 
         this.estado = res.estado;
         this.fechaCompra = res.fechaCompra;
         this.comprobarProducto();
+        this.mostrarSpinner = false;
       });
     });
 

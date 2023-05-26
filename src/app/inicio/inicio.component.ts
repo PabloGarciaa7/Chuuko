@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Producto } from './../interfaces/producto.interfaces';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
@@ -30,13 +31,20 @@ export class InicioComponent implements OnInit {
     }
 
     this.api.getProductos(queryBusqueda).subscribe((data) => {
-      this.productosSuggestion = data;
+      this.productosSuggestion = data.map((producto: { _id: any; nombre: any; }) => ({
+        _id: producto._id,
+        nombre: producto.nombre
+      }));
     });
   }
 
   redirectProducto(){
-    const searchUrl = '/productos/' + this.textoBusqueda;
-    window.location.href = searchUrl;
+    const selectedProduct = this.productosSuggestion.find((producto) => producto.nombre === this.textoBusqueda);
+
+    if (selectedProduct) {
+      const searchUrl = '/productos/' + selectedProduct._id;
+      window.location.href = searchUrl;
+    }
   }
 
 }

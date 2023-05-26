@@ -12,7 +12,11 @@ import { map } from 'rxjs/operators';
 export class BusquedaComponent implements OnInit {
   categorias!: any[];
 
+  mostrarSpinner = true;
+
   productos:Producto[] = [];
+
+  avisoProductosEncontrados:boolean = false;
 
   precio_max = 100000;
   precio_min = 0;
@@ -25,6 +29,7 @@ export class BusquedaComponent implements OnInit {
   constructor(private api: ApiService,private route: ActivatedRoute) {}
 
   onSearchTextChange() {
+    this.mostrarSpinner = true;
     this.searchProducts();
   }
 
@@ -39,11 +44,14 @@ export class BusquedaComponent implements OnInit {
     this.api.getCategorias().subscribe((data) => {
       this.categorias = data;
     });
+
     this.searchProducts();
   }
 
   searchProducts() {
     let queryBusqueda = '';
+
+    this.avisoProductosEncontrados = false;
 
     if (this.textoBusqueda !== undefined && this.textoBusqueda !== "") {
       queryBusqueda = queryBusqueda + `nombre=${this.textoBusqueda}`;
@@ -61,6 +69,10 @@ export class BusquedaComponent implements OnInit {
 
     this.api.getProductos(queryBusqueda).subscribe((data) => {
       this.productos = data;
+      if(data.length === 0){
+        this.avisoProductosEncontrados = true;
+      }
+      this.mostrarSpinner = false;
     });
   }
 }
